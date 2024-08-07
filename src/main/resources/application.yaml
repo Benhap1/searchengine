@@ -1,0 +1,43 @@
+indexing-settings:
+  sites:
+
+    - url: https://itdeti.ru
+      name: itdeti
+    - url: https://bcparks.ca/
+      name: bcpark.ca
+    - url: https://www.nationalgeographic.com/
+      name: nationalgeographic
+    - url: https://www.m24.ru/
+      name: moscownews
+    - url: https://saint-petersburg.ru/
+      name: saint-petersburg.ru
+    - url: https://playback.ru/
+      name: playback.ru
+    - url: https://dombulgakova.ru/
+      name: dombulgakova.ru
+
+  fork-join-pool:
+    parallelism: 20
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/searchengine
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 200
+      minimum-idle: 100
+      idle-timeout: 600000
+      connection-timeout: 600000
+      max-lifetime: 1800000
+    jpa:
+      show-sql: true
+
+  liquibase:
+    change-log: classpath:/db/changelog/changelog.xml
+
+logging:
+  level:
+    com.zaxxer.hikari: DEBUG
+    java.util.concurrent.ForkJoinPool: DEBUG
